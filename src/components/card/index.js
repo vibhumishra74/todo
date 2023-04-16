@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Card, Button, Form } from "react-bootstrap";
 import "./module.card.css";
 const TodoCard = ({tasks, setTasks,currentPage, status,filterdata})=>{
-    const [tasksPerPage, setTasksPerPage] = useState(5);
+    const [tasksPerPage, setTasksPerPage] = useState(10);
     const [editingTaskId, setEditingTaskId] = useState(null);
     const [newTaskTitle, setNewTaskTitle] = useState("");
     console.log('task',tasks)
