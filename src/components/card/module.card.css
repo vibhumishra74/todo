@@ -1,3 +1,7 @@
 .done {
     text-decoration: line-through;
   }
+
+  .cardcontainer{
+    margin: 10px;
+  }

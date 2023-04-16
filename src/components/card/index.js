@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Card, Button, Form } from "react-bootstrap";
 import "./module.card.css";
 const TodoCard = ({tasks, setTasks,currentPage, status,filterdata})=>{
-    const [tasksPerPage, setTasksPerPage] = useState(10);
     const [editingTaskId, setEditingTaskId] = useState(null);
     const [newTaskTitle, setNewTaskTitle] = useState("");
-    console.log('task',tasks)
-    console.log('status>>',status)
+    
     
   
     const deleteTask = (taskId) => {
@@ -47,14 +45,10 @@ const TodoCard = ({tasks, setTasks,currentPage, status,filterdata})=>{
       setTasks(updatedTasks);
     };
   
-    const indexOfLastTask = currentPage * tasksPerPage;
-    const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-    const currentTasks = tasks?.slice(indexOfFirstTask, indexOfLastTask);
-    let resultmap = filterdata.length>0 ? tasks: currentTasks;
-    let dropdownfilter = status
-    const renderTasks = resultmap.filter(task=>task.title.includes(filterdata) && (status !='All' ?  task.done === status:true)).map((task,i) => {
+    
+    const renderTasks = tasks.filter(task=>task.title.includes(filterdata) && (status !='All' ?  task.done === status:true)).map((task,i) => {
         if (task.id === editingTaskId) {
-          return (<>
+          return (<Card className='cardcontainer'>
            <Card.Header>Task No:-{i+1}</Card.Header>
             <Card.Body key={task.id}>
                 
@@ -68,12 +62,12 @@ const TodoCard = ({tasks, setTasks,currentPage, status,filterdata})=>{
                 Save
               </Button>
             </Card.Body>
-            </>
+            </Card>
           );
         } else {
           return (
-            <>
-             <Card.Header>Task No:-{(currentPage-1)*5+ i+1}</Card.Header>
+            <Card className='cardcontainer'>
+             <Card.Header>Task No:-{i+1}</Card.Header>
             <Card.Body key={task.id}>
                 <Card.Title className={task.done ? "done" : ""}>{task.title}</Card.Title>
               {/* <Card.Text className={task.done ? "done" : ""}>{task.title}</Card.Text> */}
@@ -91,13 +85,14 @@ const TodoCard = ({tasks, setTasks,currentPage, status,filterdata})=>{
                 </div>
               )}
             </Card.Body>
-            </>
+            </Card>
           );
         }
-      });
-    return tasks?.length>0? <Card>
+      }).slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5);
+
+    return tasks?.length>0? <>
         {renderTasks}
-    </Card>:<div>
+    </>:<div>
         <h2>Please add to your Todo</h2>
     </div>
     

@@ -10,7 +10,6 @@ describe('TodoCard', () => {
   ];
 
   const setTasks = jest.fn();
-  const setCurrentPage = jest.fn();
   const filterdata = "";
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('TodoCard', () => {
         tasks={tasks}
         setTasks={setTasks}
         currentPage={1}
-        setCurrentPage={setCurrentPage}
+        status="All"
         filterdata={filterdata}
       />
     );

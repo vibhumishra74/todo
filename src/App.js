@@ -15,11 +15,10 @@ const TodoList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [tasksPerPage, setTasksPerPage] = useState(5);
   const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [filterdata,setFilterData] = useState('')
-  const [status,setStatus] = useState('All')
-// console.log('filterdata',filterdata)
+  const [filterdata, setFilterData] = useState('')
+  const [status, setStatus] = useState('All')
   const addTask = () => {
-    if(!newTaskTitle.trim()){
+    if (!newTaskTitle.trim()) {
       alert('please add something in todo task')
       return
     }
@@ -27,59 +26,53 @@ const TodoList = () => {
 
     setTasks([...tasks, newTask]);
     setNewTaskTitle("");
-    localStorage.setItem('tasks',JSON.stringify([...tasks, newTask]))
+    localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]))
   };
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(tasks.length / tasksPerPage); i++) {
+  const length = tasks.filter(task => task.title.includes(filterdata) && (status != 'All' ? task.done === status : true)).length
+  for (let i = 1; i <= Math.ceil(length / 5); i++) {
     pageNumbers.push(i);
   }
-
   const renderPageNumbers = pageNumbers.map((number) => {
     return (
-      <li key={number} className={`${number == currentPage ?'active':""}`} onClick={() => setCurrentPage(number)}>
+      <li key={number} className={`${number == currentPage ? 'active' : ""}`} onClick={() => setCurrentPage(number)}>
         {number}
       </li>
     );
   });
 
- 
 
 
-  useEffect(()=>{
-    if(localStorage.getItem('tasks'))
-    localStorage.setItem('tasks',JSON.stringify(tasks))
-  },[tasks])
 
-  const handleChange = (e)=>{
+  useEffect(() => {
+    if (localStorage.getItem('tasks'))
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+
+  const handleChange = (e) => {
 
     setFilterData(e)
   }
   return (
     <div className="container">
       <h1>Todo List</h1>
-    {/* {console.log('status',status)} */}
       <FilterComponent status={status} setStatus={setStatus} handleChange={handleChange} filterdata={filterdata} />
-      
+
       <AddToDo newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} addTask={addTask} renderPageNumbers={renderPageNumbers} />
 
-      <TodoCard 
-       tasks={tasks}
-       status={status}
-       setTasks={ setTasks}
-       currentPage={currentPage}
+      <TodoCard
+        tasks={tasks}
+        status={status}
+        setTasks={setTasks}
+        currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         filterdata={filterdata}
-        
-       />
+
+      />
       <ul id="page-numbers">{renderPageNumbers}</ul>
-            </div>
-            );
-            };
-            
-            
-            
-            export default TodoList
-            
-            
-            
+    </div>
+  );
+};
+
+export default TodoList
