@@ -1,0 +1,19 @@
+.addTodoInput{
+     padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+.addtask{
+    height: 40px;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

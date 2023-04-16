@@ -1,38 +1,84 @@
-.App {
+body{
+  background: rgb(34,193,195);
+  background: linear-gradient(106deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    color: White;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+}
+h1{
+  color: #fff;
+}
+h2{
+  color: #fff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+li {
+  margin-bottom: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+}
+
+li span {
+  margin-right: 10px;
+}
+
+li.done span {
+  text-decoration: line-through;
+}
+
+li div {
+  display: flex;
+}
+
+li div button {
+  margin-right: 5px;
+}
+
+#page-numbers {
+  display: flex;
+  list-style: none;
+  padding: 0;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+#page-numbers li {
+  cursor: pointer;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+#page-numbers li:hover {
+  background-color: #d6cfcf;
+}
+
+#page-numbers li:active {
+  background-color: #333;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search{
+     padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 40%;
+    box-sizing: border-box;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.active{
+  background-color: #c4e2d6;
 }
